@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wairegi_Githu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-violet-50 dark:bg-myGreen">
+    <nav x-data="{ isOpen: false }" class="bg-amber-50 shadow dark:bg-gray-900 m-4 sticky top-2  z-50 rounded-md">
+        <div class="container px-2 py-2.5 mx-auto">
+            <div class="lg:flex lg:items-center">
+                <div class="flex items-center justify-between">
+                    <a href="#" class="flex items-center whitespace-nowrap text-2xl font-black">
+                        <img class="w-8 block dark:hidden" src="{{ url_for('static', filename='images/tpaw.svg') }}" alt="Example Image">
+                        <img class="w-8 hidden dark:block" src="{{ url_for('static', filename='images/wpaw.svg') }}" alt="Example Image">
+                        <span class="ml-2 text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-orange-800">Wairegi_Githu</span></h1>
+                    </a>
+    
+                    <!-- Mobile menu button -->
+                    <div class="flex lg:hidden">
+                        <button x-cloak @click="isOpen = !isOpen" type="button" class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
+                            <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+                            </svg>
+                    
+                            <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+    
+                <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 flex-1 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-amber-50 dark:bg-gray-900 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center lg:justify-between">
+                    <div class="flex flex-col capitalize dark:text-gray-300 lg:flex lg:px-16 lg:-mx-4 lg:flex-row lg:items-center">
+                        <a href="#languages" class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 font-semibold hover:text-gray-900 dark:hover:text-gray-200">Languages</a>
+                        <a href="#projects" class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 font-semibold hover:text-gray-900 dark:hover:text-gray-200">Projects</a>
+                        <a href="#contact" class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 font-semibold hover:text-gray-900 dark:hover:text-gray-200">Contact</a>
+                    </div>
+        
+                    <div class="flex justify-center mt-6 lg:flex lg:mt-0 lg:-mx-2">
+                        <a href="{{ url_for('static', filename='files/Cv...pdf') }}">
+                            <button class="rounded-md border-2 font-bold border-gray-900 dark:border-gray-500 px-1.5 py-1 text-gray-900 transition-colors dark:text-gray-400  hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900">CV</button>
+                        </a>
+
+                        <a href="https://github.com/Githu77" class="mx-2 p-2.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Github">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.026 2C7.13295 1.99937 2.96183 5.54799 2.17842 10.3779C1.395 15.2079 4.23061 19.893 8.87302 21.439C9.37302 21.529 9.55202 21.222 9.55202 20.958C9.55202 20.721 9.54402 20.093 9.54102 19.258C6.76602 19.858 6.18002 17.92 6.18002 17.92C5.99733 17.317 5.60459 16.7993 5.07302 16.461C4.17302 15.842 5.14202 15.856 5.14202 15.856C5.78269 15.9438 6.34657 16.3235 6.66902 16.884C6.94195 17.3803 7.40177 17.747 7.94632 17.9026C8.49087 18.0583 9.07503 17.99 9.56902 17.713C9.61544 17.207 9.84055 16.7341 10.204 16.379C7.99002 16.128 5.66202 15.272 5.66202 11.449C5.64973 10.4602 6.01691 9.5043 6.68802 8.778C6.38437 7.91731 6.42013 6.97325 6.78802 6.138C6.78802 6.138 7.62502 5.869 9.53002 7.159C11.1639 6.71101 12.8882 6.71101 14.522 7.159C16.428 5.868 17.264 6.138 17.264 6.138C17.6336 6.97286 17.6694 7.91757 17.364 8.778C18.0376 9.50423 18.4045 10.4626 18.388 11.453C18.388 15.286 16.058 16.128 13.836 16.375C14.3153 16.8651 14.5612 17.5373 14.511 18.221C14.511 19.555 14.499 20.631 14.499 20.958C14.499 21.225 14.677 21.535 15.186 21.437C19.8265 19.8884 22.6591 15.203 21.874 10.3743C21.089 5.54565 16.9181 1.99888 12.026 2Z">
+                                </path>
+                            </svg>
+                        </a>
+            
+                        <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5">
+                            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+      <main>
+        <section class="bg-amber-50 rounded-t-lg dark:bg-gray-900 mx-4 mt-4 border-b dark:border-gray-600 border-gray-200 text-gray-900 dark:text-gray-200">
+            <div class="container flex flex-col px-6 py-4 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+                <div class="flex flex-col items-center w-full lg:flex-row lg:w-1/2">
+                    <div class="max-w-lg lg:mx-12 lg:order-2">
+                        <h1 class="text-3xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">Software Engineer & IT Consultant</h1>
+                        <p class="mt-4 text-gray-600 dark:text-gray-300">Highly qualified ICT professional with a Degree in Software Engineering and a Diploma in Information
+                            Technology, complemented by hands-on experience in supporting and maintaining ICT systems</p>
+                        <div class="mt-6">
+                            <a href="#" class="px-6 py-2.5 mt-6 text-sm font-medium leading-5 text-center text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 lg:mx-0 lg:w-auto focus:outline-none">
+                                Hire Me
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="flex items-center justify-center w-full h-96 lg:w-1/2">
+                    <img class="object-fill h-full max-w-2xl rounded-md" src="https://i.ibb.co/7vk2H5J/me.png" alt="me" >
+                </div>
+            </div>
+        </section>        
+
+        <section id="languages" class="bg-amber-50 dark:bg-gray-950 py-12 mx-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Languages mastered</h2>
+                <div class="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    <div class="text-center border p-2">
+                        <img class="mx-auto h-20" src="{{ url_for('static', filename='images/Python.svg') }}" alt="Example Image">
+                        <p class="mt-2 text-base text-gray-900 dark:text-gray-200">Python</p>
+                        <a href="https://www.python.org/" class="mt-2 text-indigo-600 hover:text-indigo-500 inline-flex items-center">
+                            Visit website
+                            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-20" src="{{ url_for('static', filename='images/c.svg') }}" alt="Example Image">
+                        <p class="mt-2 font-extrabold text-xl text-gray-600">C</p>
+                        <a href="https://en.wikipedia.org/wiki/C_(programming_language)" class="mt-2 text-indigo-600 hover:text-indigo-500 inline-flex items-center">
+                            Visit website
+                            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-20" src="{{ url_for('static', filename='images/javascript.svg') }}" alt="Example Image">
+                        <p class="mt-2 font-extrabold text-xl text-gray-600">javascript</p>
+                        <a href="https://developer.mozilla.org/docs/Web/JavaScript" class="mt-2 text-indigo-600 hover:text-indigo-500 inline-flex items-center">
+                            Visit website
+                            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-20 block dark:hidden" src="{{ url_for('static', filename='images/php.svg') }}" alt="Example Image">
+                        <img class="mx-auto h-20 hidden dark:block" src="{{ url_for('static', filename='images/php_dark.svg') }}" alt="Example Image">
+                        <p class="mt-2 font-extrabold text-xl text-gray-600">Php</p>
+                        <a href="https://www.php.net/" class="mt-2 text-indigo-600 hover:text-indigo-500 inline-flex items-center">
+                            Visit website
+                            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-20 hidden dark:block" src="{{ url_for('static', filename='images/bash_dark.svg') }}" alt="Example Image">
+                        <img class="mx-auto h-20 block dark:hidden" src="{{ url_for('static', filename='images/bash.svg') }}" alt="Example Image">
+                        <p class="mt-2 font-extrabold text-xl text-gray-600">Bash</p>
+                        <a href="https://www.gnu.org/software/bash/" class="mt-2 text-indigo-600 hover:text-indigo-500 inline-flex items-center">
+                            Visit website
+                            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-20" src="{{ url_for('static', filename='images/html5.svg') }}" alt="Example Image">
+                        <p class="mt-2 font-extrabold text-xl text-gray-600">Html5</p>
+                        <a href="https://es.wikipedia.org/wiki/HTML5" class="mt-2 text-indigo-600 hover:text-indigo-500 inline-flex items-center">
+                            Visit website
+                            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-20" src="{{ url_for('static', filename='images/css.svg') }}" alt="Example Image">
+                        <p class="mt-2 font-extrabold text-xl text-gray-600">CSS</p>
+                        <a href="https://es.wikipedia.org/wiki/CSS" class="mt-2 text-indigo-600 hover:text-indigo-500 inline-flex items-center">
+                            Visit website
+                            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-20 hidden dark:block" src="{{ url_for('static', filename='images/markdown-dark.svg') }}" alt="Example Image">
+                        <img class="mx-auto h-20 block dark:hidden" src="{{ url_for('static', filename='images/markdown-light.svg') }}" alt="Example Image">
+                        <p class="mt-2 font-extrabold text-xl text-gray-600">Markdown</p>
+                        <a href="https://www.markdownguide.org/" class="mt-2 text-indigo-600 hover:text-indigo-500 inline-flex items-center">
+                            Visit website
+                            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </a>
+                    </div>
+            </div>
+        </section>
+        <section class="bg-gradient-to-br from-amber-50 to-orange-100 dark:from-gray-800 dark:to-gray-900 mx-4 py-12">
+            <h2 class="text-lg text-indigo-600 font-bold mx-auto text-center tracking-wider uppercase mb-8">
+                Frameworks
+            </h2>
+            <div class="mx-auto max-w-screen-xl px-4 overflow-x-auto">
+                <table class="table-auto border-collapse w-full text-gray-500 dark:text-gray-400">
+                    <thead class="bg-indigo-100 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Logo</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Framework</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="mx-auto h-12" src="{{ url_for('static', filename='images/angular.svg') }}" alt="Angular">
+                            </td>
+                            <td class="px-6 py-4 font-medium">Angular</td>
+                            <td class="px-6 py-4">
+                                <a href="https://angular.dev/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="mx-auto h-12" src="{{ url_for('static', filename='images/django.svg') }}" alt="Django">
+                            </td>
+                            <td class="px-6 py-4 font-medium">Django</td>
+                            <td class="px-6 py-4">
+                                <a href="https://www.djangoproject.com/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="mx-auto h-12 hidden dark:block" src="{{ url_for('static', filename='images/expressjs_dark.svg') }}" alt="Express.js Dark">
+                                <img class="mx-auto h-12 block dark:hidden" src="{{ url_for('static', filename='images/expressjs.svg') }}" alt="Express.js">
+                            </td>
+                            <td class="px-6 py-4 font-medium">Express.js</td>
+                            <td class="px-6 py-4">
+                                <a href="https://expressjs.com/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="mx-auto h-12 block dark:hidden" src="{{ url_for('static', filename='images/flask-light.svg') }}" alt="Flask Light">
+                                <img class="mx-auto h-12 hidden dark:block" src="{{ url_for('static', filename='images/flask-dark.svg') }}" alt="Flask Dark">
+                            </td>
+                            <td class="px-6 py-4 font-medium">Flask</td>
+                            <td class="px-6 py-4">
+                                <a href="https://flask.palletsprojects.com/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="mx-auto h-12" src="{{ url_for('static', filename='images/reactquery.svg') }}" alt="React Query">
+                            </td>
+                            <td class="px-6 py-4 font-medium">React Query</td>
+                            <td class="px-6 py-4">
+                                <a href="https://tanstack.com/query/v4" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="mx-auto h-12" src="{{ url_for('static', filename='images/tailwindcss.svg') }}" alt="Tailwind CSS">
+                            </td>
+                            <td class="px-6 py-4 font-medium">Tailwind CSS</td>
+                            <td class="px-6 py-4">
+                                <a href="https://tailwindcss.com/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        
+
+        <section class="bg-gradient-to-br from-amber-50 to-orange-100 dark:from-slate-900 dark:to-gray-900 mx-4 py-12">
+            <h2 class="text-lg text-indigo-600 font-bold mx-auto text-center tracking-wider uppercase mb-8">Libraries</h2>
+            <div class="mx-auto max-w-screen-xl px-4 overflow-x-auto">
+                <table class="table-auto border-collapse w-full text-gray-500 dark:text-gray-400">
+                    <thead class="bg-indigo-100 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Logo</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Library</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="h-12 hidden dark:block mx-auto" src="{{ url_for('static', filename='images/jquery_dark.svg') }}" alt="jQuery">
+                                <img class="h-12 block dark:hidden mx-auto" src="{{ url_for('static', filename='images/jquery.svg') }}" alt="jQuery">
+                            </td>
+                            <td class="px-6 py-4 font-medium">jQuery</td>
+                            <td class="px-6 py-4">
+                                <a href="https://jquery.com/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="h-12 mx-auto" src="{{ url_for('static', filename='images/nodejs.svg') }}" alt="Node.js">
+                            </td>
+                            <td class="px-6 py-4 font-medium">Node.js</td>
+                            <td class="px-6 py-4">
+                                <a href="https://nodejs.org/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="h-12 mx-auto" src="{{ url_for('static', filename='images/react.svg') }}" alt="React">
+                            </td>
+                            <td class="px-6 py-4 font-medium">React</td>
+                            <td class="px-6 py-4">
+                                <a href="https://reactjs.org/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="h-12 mx-auto" src="{{ url_for('static', filename='images/reactrouter.svg') }}" alt="React Router">
+                            </td>
+                            <td class="px-6 py-4 font-medium">React Router</td>
+                            <td class="px-6 py-4">
+                                <a href="https://reactrouter.com/en/main" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section class="bg-gradient-to-br from-amber-50 to-orange-100 dark:from-slate-900 dark:to-gray-900 mx-4 py-12">
+            <h2 class="text-lg text-indigo-600 font-bold mx-auto text-center tracking-wider uppercase mb-8">Database</h2>
+            <div class="mx-auto max-w-screen-xl px-4 overflow-x-auto">
+                <table class="table-auto border-collapse w-full text-gray-500 dark:text-gray-400">
+                    <thead class="bg-indigo-100 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Logo</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Database</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="h-12 mx-auto" src="{{ url_for('static', filename='images/mysql.svg') }}" alt="MySQL">
+                            </td>
+                            <td class="px-6 py-4 font-medium">MySQL</td>
+                            <td class="px-6 py-4">
+                                <a href="https://www.mysql.com/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="h-12 mx-auto" src="{{ url_for('static', filename='images/mongodb.svg') }}" alt="MongoDB">
+                            </td>
+                            <td class="px-6 py-4 font-medium">MongoDB</td>
+                            <td class="px-6 py-4">
+                                <a href="https://www.mongodb.com/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="h-12 mx-auto" src="{{ url_for('static', filename='images/redis.svg') }}" alt="Redis">
+                            </td>
+                            <td class="px-6 py-4 font-medium">Redis</td>
+                            <td class="px-6 py-4">
+                                <a href="https://redis.io/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section class="bg-gradient-to-br from-amber-50 to-orange-100 dark:from-slate-900 dark:to-gray-900 mx-4 py-12">
+            <h2 class="text-lg text-indigo-600 font-bold mx-auto text-center tracking-wider uppercase mb-8">Design</h2>
+            <div class="mx-auto max-w-screen-xl px-4 overflow-x-auto">
+                <table class="table-auto border-collapse w-full text-gray-500 dark:text-gray-400">
+                    <thead class="bg-indigo-100 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Logo</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Design Tool</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 uppercase">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd:bg-amber-50 even:bg-amber-100 dark:odd:bg-gray-800 dark:even:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4 text-center">
+                                <img class="h-12 mx-auto" src="{{ url_for('static', filename='images/canva.svg') }}" alt="Canva">
+                            </td>
+                            <td class="px-6 py-4 font-medium">Canva</td>
+                            <td class="px-6 py-4">
+                                <a href="https://canva.com/" class="text-indigo-600 hover:underline">Visit Site</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+
+
+        <section id="projects" class=" w-11/12 mx-auto my-2">
+            <h2 class="my-6 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy projects </h2>
+            <div class="flex flex-wrap gap-2 max-w-screen-xl p-4 md:py-8">
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">E-commerce website : EasyBuy</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">EasyBuy is an e-commerce platform developed using Django. It allows users to browse various products, add them to a cart, and purchase them using different payment methods, including PayPal. </p>
+                    <a href="https://github.com/Githu77/EasyBuy" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Source Code
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+        
+        
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Business Website: dolce bakers</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Dolce Bakers is a web application designed with Node, Express and Mongodb to manage bakery products, orders, and user authentication. The project features a product management system, order processing.</p>
+                    <a href="https://github.com/Githu77/dolce_Bakers" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Source Code
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+        
+        
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Table-booking-app</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">The Table Booking App allows users to make reservations at your restaurant or cafe. Customers can easily book tables, view available time slots, and manage their bookings.</p>
+                    <a href="https://github.com/Githu77/TableBookingApp" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Source Code
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>       
+        </section>
+        
+        <section id="contact" class="bg-white dark:bg-gray-900">
+    <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+            Contact Me
+        </h2>
+        <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+            Got an IT issue/software issue? Want to send feedback? Need details about a project? Let me know.
+        </p>
+        <form action="{{ url_for('main.contact') }}" method="POST" class="space-y-8">
+            <div>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Your email
+                </label>
+                <input type="email" id="email" name="email" 
+                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                              focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 
+                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
+                              dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 
+                              dark:shadow-sm-light" 
+                       placeholder="name@gmail.com" required>
+            </div>
+            <div>
+                <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Subject
+                </label>
+                <input type="text" id="subject" name="subject" 
+                       class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border 
+                              border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 
+                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
+                              dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 
+                              dark:shadow-sm-light" 
+                       placeholder="Let me know how I can help you" required>
+            </div>
+            <div class="sm:col-span-2">
+                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                    Your message
+                </label>
+                <textarea id="message" name="message" rows="6" 
+                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm 
+                                 border border-gray-300 focus:ring-primary-500 focus:border-primary-500 
+                                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
+                                 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
+                          placeholder="Leave a comment..." required></textarea>
+            </div>
+            <button type="submit" 
+                    class="py-3 px-5 text-sm font-medium text-center text-gray-700 rounded-lg bg-primary-700 
+                           sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 
+                           dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                Send message
+            </button>
+        </form>
+    </div>
+</section>
+
+        <footer class="bg-white rounded-lg shadow dark:bg-gray-900">
+            <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                        <img class="mx-auto h-8 hidden dark:block" src="{{ url_for('static', filename='images/wpaw.svg') }}" alt="Example Image">
+                        <img class="mx-auto h-8 block dark:hidden" src="{{ url_for('static', filename='images/tpaw.svg') }}" alt="Example Image">
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Wairegi_Githu</span>
+                    </a>
+                    <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                        <li>
+                            <a href="#" class="hover:underline me-4 md:me-6">CV</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline me-4 md:me-6">Languages</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline me-4 md:me-6">Projects</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="#" class="hover:underline">Wairegi_Githu</a>. All Rights Reserved.</span>
+            </div>
+        </footer>
+      </main>
+      <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+      <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Change the icons inside the button based on previous settings
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+
+            // toggle icons inside button
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // if set via local storage previously
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+
+            // if NOT set via local storage previously
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+            
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent the default anchor click behavior
+                const targetElement = document.querySelector(this.getAttribute('href')); // Get the target element
+                targetElement.scrollIntoView({ behavior: 'smooth' }); // Scroll to the target element smoothly
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "wairegi_githu",
+  "version": "1.0.0",
+  "description": "This is the source code for my personal portfolio website. Built using Flask, a lightweight Python web framework, and styled with Tailwind CSS, a utility-first CSS framework.",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx tailwindcss build -i WairegiG/GithuApp/static/css/tailwind.css -o WairegiG/GithuApp/static/css/style.css",
+    "start": "npm run build:css",
+    "watch": "npx tailwindcss build -i WairegiG/GithuApp/static/css/tailwind.css -o WairegiG/GithuApp/static/css/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Githu77/Wairegi_Githu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Githu77/Wairegi_Githu/issues"
+  },
+  "homepage": "https://github.com/Githu77/Wairegi_Githu#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.0",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.0.0",
+    "postcss": "^8.0.0",
+    "autoprefixer": "^10.0.0"
+  }
+}
