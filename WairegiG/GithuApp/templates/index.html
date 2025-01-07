@@ -69,7 +69,7 @@
                         <p class="mt-4 text-gray-600 dark:text-gray-300">Highly qualified ICT professional with a Degree in Software Engineering and a Diploma in Information
                             Technology, complemented by hands-on experience in supporting and maintaining ICT systems</p>
                         <div class="mt-6">
-                            <a href="#" class="px-6 py-2.5 mt-6 text-sm font-medium leading-5 text-center text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 lg:mx-0 lg:w-auto focus:outline-none">
+                            <a href="#contact" class="px-6 py-2.5 mt-6 text-sm font-medium leading-5 text-center text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 lg:mx-0 lg:w-auto focus:outline-none">
                                 Hire Me
                             </a>
                         </div>
@@ -474,9 +474,9 @@
                           placeholder="Leave a comment..." required></textarea>
             </div>
             <button type="submit" 
-                    class="py-3 px-5 text-sm font-medium text-center text-gray-700 rounded-lg bg-primary-700 
-                           sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 
-                           dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                class="py-3 px-5 text-sm font-medium text-center text-gray-700 dark:text-gray-400 rounded-lg  
+                    sm:w-fit border-2 border-solid border-gray-600 dark:border-gray-500 
+                    hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white">
                 Send message
             </button>
         </form>
@@ -493,16 +493,18 @@
                     </a>
                     <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                         <li>
-                            <a href="#" class="hover:underline me-4 md:me-6">CV</a>
+                            <a href="{{ url_for('static', filename='files/Cv...pdf') }}" class="hover:underline me-4 md:me-6">
+                                CV
+                            </a>                        
                         </li>
                         <li>
-                            <a href="#" class="hover:underline me-4 md:me-6">Languages</a>
+                            <a href="#languages" class="hover:underline me-4 md:me-6">Languages</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:underline me-4 md:me-6">Projects</a>
+                            <a href="#projects" class="hover:underline me-4 md:me-6">Projects</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:underline">Contact</a>
+                            <a href="#contact" class="hover:underline">Contact</a>
                         </li>
                     </ul>
                 </div>
