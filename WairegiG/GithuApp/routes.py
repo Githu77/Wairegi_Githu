@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, current_app
 from flask_mail import Message
 from GithuApp import mail
 
@@ -14,12 +14,18 @@ def contact():
         email = request.form['email']
         subject = request.form['subject']
         message = request.form['message']
-        
+        msg = Message(subject, sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=['githubenard16@gmail.com'])
+
         msg = Message(subject, sender=email, recipients=['githubenard16@gmail.com'])
         msg.body = f"Email: {email}\n\n{message}"
-        mail.send(msg)
         
-        flash('Message sent successfully!')
+        try:
+            with mail.connect() as conn:
+                conn.send(msg)
+            flash('Message sent successfully!', 'success')
+        except Exception as e:
+            flash(f'Error sending message: {str(e)}', 'danger')
+        
         return redirect(url_for('main.contact'))
 
     return render_template('index.html')
